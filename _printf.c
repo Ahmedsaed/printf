@@ -10,5 +10,12 @@
  */
 int _printf(const char *format, ...)
 {
+    int coutner = 0;
 
+    // char *s = parser(format);
+
+    // print string
+
+    return counter;
 }
+
