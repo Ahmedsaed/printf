@@ -69,6 +69,10 @@ int evaluate_flag(char flag, va_list args)
 		case '%':
 			_putchar('%');
 			break;
+		default:
+			_putchar('%');
+			_putchar(flag);
+			break;
 	}
 
 	return (counter);

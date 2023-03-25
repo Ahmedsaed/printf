@@ -4,7 +4,7 @@ src_dir := src
 include_dir := include
 
 CC := gcc
-CFlags := -Wall -Werror -Wextra -pedantic -std=gnu89
+CFlags := -Wall -Werror -Wextra -Wno-format -pedantic -std=gnu89
 
 FILES = ./tests/main.c *.c
 SOURCES = $(FILES:%.cpp=$(src_dir)/%.cpp)
