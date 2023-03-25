@@ -12,6 +12,7 @@ SOURCES = $(FILES:%.cpp=$(src_dir)/%.cpp)
 all: build run
 
 build: setup_dirs
+	clear
 	${CC} ${CFlags} ${SOURCES} -o ./$(build_dir)/${application}.out
 
 run:
