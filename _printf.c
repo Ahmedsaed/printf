@@ -5,93 +5,71 @@
  *
  * @format: string of characters
  *
- * Return: int - number of characters printed (excluding the 
+ * Return: int - number of characters printed (excluding the
  * null byte used to end output to strings)
  */
 int _printf(const char *format, ...)
 {
-    int counter = 0, i, j;
-    va_list args;
-    char *s;
+	int counter = 0, i;
+	va_list args;
 
-    va_start(args, format);
+	va_start(args, format);
 
-    for (i = 0; format[i] != '\0'; i++)
-    {
-        if (format[i] == '%')
-        {
-            i++;
-            switch (format[i])
-            {
-                case 'c':
-                    _putchar(va_arg(args, int));
-                    break;
-                case 's':
-                    s = va_arg(args, char *);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
 
-                    for (j = 0; s[j] != '\0'; j++)
-                    {
-                        counter++;
-                        _putchar(s[j]);
-                    }
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			counter += evaluate_flag(format[i], args);
+		}
+		else
+		{
+			counter++;
+			_putchar(format[i]);
+		}
+	}
 
-                    counter--;
-                    break;
-                case '%':
-                    _putchar('%');
-                    break;
-            }
-            
-        }
-        else
-        {
-            _putchar(format[i]);
-        }
-        
-        counter++;
-    }
+	va_end(args);
 
-    va_end(args);
-
-    return counter;
+	return (counter);
 }
 
 /**
- * parser - returns evaluated string
- * 
- * @format: string - unformatted string
- * @args: arguments list 
+ * evaluate_flag - evaluates print flags
  *
- * Return: char 
-char *parser(const char * f, va_list args)
-{
-    int i;
-    char *s
-    
-    for (i = 0; f[i] != '\0'; i++)
-    {
-        
-    }
-    return ("Test");
-}
+ * @flag: char
+ * @args: arguments list
+ *
+ * Return: int
  */
-
-/**
-* arg_count - returns number of arguments needed
-* 
-* @format: string of characters
-*
-* Return: int
-int arg_count(char *f)
+int evaluate_flag(char flag, va_list args)
 {
-    int counter = 0, i;
+	int j, counter = 1;
+	char *s;
 
-    for (i = 0; f[i] != '\0'; i++)
-    {
-        if(f[i] == '%')
-            counter += 1;
-    }
+	switch (flag)
+	{
+		case 'c':
+			_putchar(va_arg(args, int));
+			break;
+		case 's':
+			s = va_arg(args, char *);
 
-    return (counter);
+			for (j = 0; s[j] != '\0'; j++)
+			{
+				counter++;
+				_putchar(s[j]);
+			}
+
+			counter--;
+			break;
+		case '%':
+			_putchar('%');
+			break;
+	}
+
+	return (counter);
 }
-*/
