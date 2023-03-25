@@ -15,12 +15,12 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	if (!format || (format[0] == '%' && !format[1]))
+	if (!format)
 		return (-1);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
 			counter += evaluate_flag(format[i], args);
@@ -28,55 +28,11 @@ int _printf(const char *format, ...)
 		else
 		{
 			counter++;
-			_putchar(format[i]);
+			printchar(format[i]);
 		}
 	}
 
 	va_end(args);
-
-	return (counter);
-}
-
-/**
- * evaluate_flag - evaluates print flags
- *
- * @flag: char
- * @args: arguments list
- *
- * Return: int
- */
-int evaluate_flag(char flag, va_list args)
-{
-	int j, counter = 1;
-	char *s;
-
-	switch (flag)
-	{
-		case 'c':
-			_putchar(va_arg(args, int));
-			break;
-		case 's':
-			s = va_arg(args, char *);
-
-			if (s == NULL)
-				s = "(null)";
-
-			for (j = 0; s[j] != '\0'; j++)
-			{
-				counter++;
-				_putchar(s[j]);
-			}
-
-			counter--;
-			break;
-		case '%':
-			_putchar('%');
-			break;
-		default:
-			_putchar('%');
-			_putchar(flag);
-			break;
-	}
 
 	return (counter);
 }
