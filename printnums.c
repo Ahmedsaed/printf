@@ -7,7 +7,7 @@
  *
  * Return: int count
  */
-int print_integer(int n)
+int print_integer(long int n)
 {
 	unsigned int n1;
 	int count = 0;

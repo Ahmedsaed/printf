@@ -8,7 +8,7 @@ int _printf(const char *format, ...);
 int printchar(char c);
 int evaluate_flag(char flag, va_list args);
 int printstr(char *s);
-int print_integer(int n);
+int print_integer(long int n);
 unsigned int print_binary(unsigned int k);
 unsigned int print_octal(unsigned int k);
 unsigned int print_hex(unsigned int k);

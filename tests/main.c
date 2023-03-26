@@ -9,7 +9,8 @@
 #define TEST_OTHER 0
 #define TEST_BINARY 0
 #define TEST_OCTAL 0
-#define TEST_HEX 1
+#define TEST_HEX 0
+#define TEST_UNSIGNED 1
 
 /* Function Prototypes */
 void test_print_string(void);
@@ -18,6 +19,7 @@ void test_print_other(void);
 void test_print_binary(void);
 void test_print_octal(void);
 void test_print_hex(void);
+void test_print_uint(void);
 
 /**
  * main - Entry point
@@ -27,21 +29,31 @@ void test_print_hex(void);
 int main(void)
 {
 #if TEST_ALL || TEST_STRING
+	printf("Testing string\n");
 	test_print_string();
 #endif
 #if TEST_ALL || TEST_INTEGER || TEST_NUMERIC
+	printf("Testing integer\n");
 	test_print_integer();
 #endif
 #if TEST_ALL || TEST_BINARY || TEST_NUMERIC
+	printf("Testing binary\n");
 	test_print_binary();
 #endif
 #if TEST_ALL || TEST_OCTAL || TEST_NUMERIC
+	printf("Testing octal\n");
 	test_print_octal();
 #endif
 #if TEST_ALL || TEST_HEX || TEST_NUMERIC
+	printf("Testing hex\n");
 	test_print_hex();
 #endif
+#if TEST_ALL || TEST_UNSIGNED || TEST_NUMERIC
+	printf("Testing unsigned\n");
+	test_print_uint();
+#endif
 #if TEST_ALL || TEST_OTHER
+	printf("Testing other\n");
 	test_print_other();
 #endif
 
@@ -197,5 +209,27 @@ void test_print_hex(void)
 
 	len = _printf("Hex:[%x]\n", 1024);
 	len2 = printf("Hex:[%x]\n", 1024);
+	printf("Len:[%d, %d]\n", len, len2);
+}
+
+/**
+ * test_print_uint - test print unsigned
+ *
+ * Return: void
+ */
+void test_print_uint(void)
+{
+	int len, len2;
+
+	len = _printf("Unsigned:[%u]\n", 98);
+	len2 = printf("Unsigned:[%u]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Unsigned:[%u]\n", 1024);
+	len2 = printf("Unsigned:[%u]\n", 1024);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Unsigned:[%u]\n", -1);
+	len2 = printf("Unsigned:[%u]\n", -1);
 	printf("Len:[%d, %d]\n", len, len2);
 }
