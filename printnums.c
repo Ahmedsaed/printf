@@ -66,3 +66,25 @@ unsigned int print_octal(unsigned int k)
 
 	return (count);
 }
+
+/**
+ * print_hex - prints a hex number
+ *
+ * @k: unsigned int
+ *
+ * Return: count - unsigned int
+ */
+unsigned int print_hex(unsigned int k)
+{
+	unsigned int count = 0;
+
+	if (k > 15)
+		count += print_hex(k / 16);
+
+	if ((k % 16) < 10)
+		count += printchar((k % 16) + '0');
+	else
+		count += printchar((k % 16) + 'a' - 10);
+
+	return (count);
+}

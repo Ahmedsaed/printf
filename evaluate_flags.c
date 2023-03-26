@@ -34,6 +34,9 @@ int evaluate_flag(char flag, va_list args)
 		case 'o':
 			counter += print_octal(va_arg(args, unsigned int));
 			break;
+		case 'x':
+			counter += print_hex(va_arg(args, unsigned int));
+			break;
 		default:
 			counter += printchar('%');
 			counter += printchar(flag);
