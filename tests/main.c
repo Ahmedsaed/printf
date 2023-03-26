@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "../main.h"
 
-#define TEST_STRING 0
-#define TEST_INTEGER 1
+#define TEST_STRING 1
+#define TEST_INTEGER 0
 #define TEST_OTHER 0
 
 void test_print_string(void);

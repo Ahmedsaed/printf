@@ -30,8 +30,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			counter++;
-			printchar(format[i]);
+			counter += printchar(format[i]);
 		}
 	}
 
