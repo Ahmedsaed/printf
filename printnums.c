@@ -9,21 +9,20 @@
  */
 int print_integer(int n)
 {
-	int num;
 	int count = 0;
 
 	if (n < 0)
 	{
 		count += printchar('-');
-		num = -n;
+		n = -n;
 	}
 	else
-		num = n;
+		n = n;
 
-	if (num / 10)
-		count += print_integer(num / 10);
+	if (n / 10)
+		count += print_integer(n / 10);
 
-	count += printchar((num % 10) + '0');
+	count += printchar((n % 10) + '0');
 
 	return (count);
 }
