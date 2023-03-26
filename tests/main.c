@@ -60,7 +60,8 @@ int main(void)
 	printf("%%c\n", 'a');
 	_printf("%%c\n", 'a');
 
-
+	printf("\"%s\"\n", "hello");
+	_printf("\"%s\"\n", "hello");
 
 	return (0);
 }
