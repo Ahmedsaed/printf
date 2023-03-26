@@ -24,7 +24,7 @@ int evaluate_flag(char flag, va_list args)
 			if (s == NULL)
 				s = "(null)";
 
-			printstr(s);
+			printstr(s, &counter);
 
 			counter--;
 			break;

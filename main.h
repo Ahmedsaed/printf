@@ -6,6 +6,6 @@
 int _printf(const char *format, ...);
 int printchar(char c);
 int evaluate_flag(char flag, va_list args);
-void printstr(char *s);
+void printstr(char *s, int *count);
 
 #endif

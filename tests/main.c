@@ -44,5 +44,10 @@ int main(void)
 	printf("Unknown:[%r]\n");
 	_printf("%\n");
 	printf("%\n");
+	printf("This sentence is 36 characters long\n");
+	len = _printf("This sentence is 36 characters long\n");
+	printf("This sentence is %d characters long\n", len);
+
+
 	return (0);
 }
