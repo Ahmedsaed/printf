@@ -3,7 +3,7 @@
 #include "../main.h"
 
 #define TEST_ALL 0
-#define TEST_NUMERIC 0
+#define TEST_NUMERIC 1
 #define TEST_STRING 0
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
@@ -29,31 +29,31 @@ void test_print_uint(void);
 int main(void)
 {
 #if TEST_ALL || TEST_STRING
-	printf("Testing string\n");
+	printf("\n\nTesting string: \n");
 	test_print_string();
 #endif
 #if TEST_ALL || TEST_INTEGER || TEST_NUMERIC
-	printf("Testing integer\n");
+	printf("\n\nTesting integer: \n");
 	test_print_integer();
 #endif
 #if TEST_ALL || TEST_BINARY || TEST_NUMERIC
-	printf("Testing binary\n");
+	printf("\n\nTesting binary: \n");
 	test_print_binary();
 #endif
 #if TEST_ALL || TEST_OCTAL || TEST_NUMERIC
-	printf("Testing octal\n");
+	printf("\n\nTesting octal: \n");
 	test_print_octal();
 #endif
 #if TEST_ALL || TEST_HEX || TEST_NUMERIC
-	printf("Testing hex\n");
+	printf("\n\nTesting hex: \n");
 	test_print_hex();
 #endif
 #if TEST_ALL || TEST_UNSIGNED || TEST_NUMERIC
-	printf("Testing unsigned\n");
+	printf("\n\nTesting unsigned: \n");
 	test_print_uint();
 #endif
 #if TEST_ALL || TEST_OTHER
-	printf("Testing other\n");
+	printf("\n\nTesting other: \n");
 	test_print_other();
 #endif
 
@@ -189,6 +189,10 @@ void test_print_octal(void)
 	len2 = printf("Octal:[%o]\n", 98);
 	printf("Len:[%d, %d]\n", len, len2);
 
+	len = _printf("Octal:[%o]\n", -98);
+	len2 = printf("Octal:[%o]\n", -98);
+	printf("Len:[%d, %d]\n", len, len2);
+
 	len = _printf("Octal:[%o]\n", 1024);
 	len2 = printf("Octal:[%o]\n", 1024);
 	printf("Len:[%d, %d]\n", len, len2);
@@ -203,12 +207,20 @@ void test_print_hex(void)
 {
 	int len, len2;
 
-	len = _printf("Hex:[%x]\n", 98);
-	len2 = printf("Hex:[%x]\n", 98);
+	len = _printf("hex:[%x]\n", 98);
+	len2 = printf("hex:[%x]\n", 98);
 	printf("Len:[%d, %d]\n", len, len2);
 
-	len = _printf("Hex:[%x]\n", 1024);
-	len2 = printf("Hex:[%x]\n", 1024);
+	len = _printf("hex:[%x]\n", 1024);
+	len2 = printf("hex:[%x]\n", 1024);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Hex:[%X]\n", 98);
+	len2 = printf("Hex:[%X]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Hex:[%X]\n", 1024);
+	len2 = printf("Hex:[%X]\n", 1024);
 	printf("Len:[%d, %d]\n", len, len2);
 }
 
