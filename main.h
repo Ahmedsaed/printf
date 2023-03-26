@@ -7,5 +7,6 @@ int _printf(const char *format, ...);
 int printchar(char c);
 int evaluate_flag(char flag, va_list args);
 void printstr(char *s, int *count);
+void print_integer(int n, int *count);
 
 #endif

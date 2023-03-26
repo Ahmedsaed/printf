@@ -31,6 +31,10 @@ int evaluate_flag(char flag, va_list args)
 		case '%':
 			printchar('%');
 			break;
+		case 'd':
+		case 'i':
+			print_integer(va_arg(args, int), &counter);
+			break;
 		default:
 			printchar('%');
 			printchar(flag);
