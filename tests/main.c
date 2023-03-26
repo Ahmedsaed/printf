@@ -145,4 +145,8 @@ void test_print_binary(void)
 	len = _printf("Binary:[%b]\n", 98);
 	len2 = printf("Binary:[%b]\n", 98);
 	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Binary:[%b]\n", 1024);
+	len2 = printf("Binary:[%b]\n", 1024);
+	printf("Len:[%d, %d]\n", len, len2);
 }

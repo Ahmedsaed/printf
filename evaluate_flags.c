@@ -28,7 +28,7 @@ int evaluate_flag(char flag, va_list args)
 			counter += print_integer(va_arg(args, int));
 			break;
 		case 'b':
-			counter += print_integer(decimal_to_binary(va_arg(args, unsigned int)));
+			counter += print_binary(va_arg(args, unsigned int));
 			break;
 		default:
 			counter += printchar('%');

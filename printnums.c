@@ -29,16 +29,20 @@ int print_integer(int n)
 }
 
 /**
- * decimal_to_binary - returns the binary representation of a number
+ * print_binary - prints a binary number
  *
- * @k: number to convert
- * Return: binary representation of k
+ * @k: unsigned int
+ *
+ * Return: count - unsigned int
  */
-unsigned int decimal_to_binary(unsigned int k)
+unsigned int print_binary(unsigned int k)
 {
-	if (k == 0)
-		return (0);
-	if (k == 1)
-		return (1);
-	return ((k % 2) + 10 * decimal_to_binary(k / 2));
+	unsigned int count = 0;
+
+	if (k > 1)
+		count += print_binary(k / 2);
+
+	count += printchar((k % 2) + '0');
+
+	return (count);
 }
