@@ -4,16 +4,19 @@
  * printstr - prints a string to stdio
  *
  * @s: pointer to a string of characters
- * @count: pointer to integer
- * Return: Void
+ *
+ * Return: int count
  */
-void printstr(char *s, int *count)
+int printstr(char *s)
 {
-	int i;
+	int count = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (*s)
 	{
-		(*count)++;
-		printchar(s[i]);
+		printchar(*s);
+		s++;
+		count++;
 	}
+
+	return (count);
 }

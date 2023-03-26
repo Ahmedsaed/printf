@@ -1,33 +1,28 @@
 #include "main.h"
 
 /**
- * printd - prints an integer
+ * print_integer - prints an integer
  *
  * @n: integer to print
- * @count: pointer to integer
  *
- * Return: void
+ * Return: int count
  */
-void print_integer(int n, int *count)
+int print_integer(int n)
 {
-	unsigned int num;
+	int count = 0;
 
 	if (n < 0)
 	{
 		printchar('-');
-		num = -n;
-		(*count)++;
-	}
-	else
-	{
-		num = n;
+		count++;
+		n = -n;
 	}
 
-	if (num / 10)
-	{
-		print_integer(num / 10, count);
-	}
+	if (n / 10)
+		count += print_integer(n / 10);
 
-	printchar((num % 10) + '0');
-	(*count)++;
+	printchar(n % 10 + '0');
+	count++;
+
+	return (count);
 }

@@ -24,7 +24,7 @@ int evaluate_flag(char flag, va_list args)
 			if (s == NULL)
 				s = "(null)";
 
-			printstr(s, &counter);
+			counter += printstr(s);
 
 			counter--;
 			break;
@@ -33,7 +33,8 @@ int evaluate_flag(char flag, va_list args)
 			break;
 		case 'd':
 		case 'i':
-			print_integer(va_arg(args, int), &counter);
+			counter += print_integer(va_arg(args, int));
+			counter--;
 			break;
 		default:
 			printchar('%');
