@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "../main.h"
 
-#define TEST_STRING 1
-#define TEST_INTEGER 0
+#define TEST_STRING 0
+#define TEST_INTEGER 1
 #define TEST_OTHER 0
 
 void test_print_string(void);
@@ -82,15 +82,20 @@ void test_print_integer(void)
 {
 	int len, len2;
 
-	_printf("Negative:[%d]\n", -762534);
-	printf("Negative:[%d]\n", -762534);
-
-	_printf("Negative:[%i]\n", -76);
-	printf("Negative:[%i]\n", -76);
-
-	len2 = printf("Len: %d\n", 5);
-	len = _printf("Len: %d\n", 5);
+	len = _printf("Negative:[%d]\n", -762534);
+	len2 = printf("Negative:[%d]\n", -762534);
 	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Negative:[%i]\n", -76);
+	len2 = printf("Negative:[%i]\n", -76);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Positive:[%i]\n", 76);
+	len2 = printf("Positive:[%i]\n", 76);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Int:[%i], Decimal:[%d]\n", 033, 033);
+	len2 = printf("Int:[%i], Decimal:[%d]\n", 033, 033);
 }
 
 /**
