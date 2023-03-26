@@ -47,7 +47,10 @@ int main(void)
 	printf("This sentence is 36 characters long\n");
 	len = _printf("This sentence is 36 characters long\n");
 	printf("This sentence is %d characters long\n", len);
-
+	printf("% s\n", "yes");
+	_printf("% s\n", "yes");
+	printf("%  d\n", -5);
+	_printf("%  d\n", -5);
 
 	return (0);
 }
