@@ -2,15 +2,19 @@
 #include <stdio.h>
 #include "../main.h"
 
+#define TEST_ALL 0
 #define TEST_STRING 0
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
-#define TEST_Binary 1
+#define TEST_BINARY 0
+#define TEST_OCTAL 1
 
+/* Function Prototypes */
 void test_print_string(void);
 void test_print_integer(void);
 void test_print_other(void);
 void test_print_binary(void);
+void test_print_octal(void);
 
 /**
  * main - Entry point
@@ -19,17 +23,20 @@ void test_print_binary(void);
  */
 int main(void)
 {
-#if TEST_STRING == 1
+#if TEST_ALL || TEST_STRING
 	test_print_string();
 #endif
-#if TEST_INTEGER == 1
+#if TEST_ALL || TEST_INTEGER
 	test_print_integer();
 #endif
-#if TEST_OTHER == 1
+#if TEST_ALL || TEST_OTHER
 	test_print_other();
 #endif
-#if TEST_Binary == 1
+#if TEST_ALL || TEST_BINARY
 	test_print_binary();
+#endif
+#if TEST_ALL || TEST_OCTAL
+	test_print_octal();
 #endif
 
 	return (0);
@@ -148,5 +155,23 @@ void test_print_binary(void)
 
 	len = _printf("Binary:[%b]\n", 1024);
 	len2 = printf("Binary:[%b]\n", 1024);
+	printf("Len:[%d, %d]\n", len, len2);
+}
+
+/**
+ * test_print_octal - test print octal
+ *
+ * Return: void
+ */
+void test_print_octal(void)
+{
+	int len, len2;
+
+	len = _printf("Octal:[%o]\n", 98);
+	len2 = printf("Octal:[%o]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Octal:[%o]\n", 1024);
+	len2 = printf("Octal:[%o]\n", 1024);
 	printf("Len:[%d, %d]\n", len, len2);
 }

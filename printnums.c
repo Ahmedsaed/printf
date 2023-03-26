@@ -46,3 +46,23 @@ unsigned int print_binary(unsigned int k)
 
 	return (count);
 }
+
+
+/**
+ * print_octal - prints an octal number
+ *
+ * @k: unsigned int
+ *
+ * Return: count - unsigned int
+ */
+unsigned int print_octal(unsigned int k)
+{
+	unsigned int count = 0;
+
+	if (k > 7)
+		count += print_octal(k / 8);
+
+	count += printchar((k % 8) + '0');
+
+	return (count);
+}

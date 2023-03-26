@@ -10,5 +10,6 @@ int evaluate_flag(char flag, va_list args);
 int printstr(char *s);
 int print_integer(int n);
 unsigned int print_binary(unsigned int k);
+unsigned int print_octal(unsigned int k);
 
 #endif

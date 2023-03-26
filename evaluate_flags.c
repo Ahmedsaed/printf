@@ -25,10 +25,14 @@ int evaluate_flag(char flag, va_list args)
 			break;
 		case 'd':
 		case 'i':
+		case 'u':
 			counter += print_integer(va_arg(args, int));
 			break;
 		case 'b':
 			counter += print_binary(va_arg(args, unsigned int));
+			break;
+		case 'o':
+			counter += print_octal(va_arg(args, unsigned int));
 			break;
 		default:
 			counter += printchar('%');
