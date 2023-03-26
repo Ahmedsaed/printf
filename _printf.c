@@ -22,10 +22,10 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%' && format[i + 1] != '\0')
 		{
-			do
-			{
+			do {
 				i++;
 			} while (format[i] == ' ');
+
 			counter += evaluate_flag(format[i], args);
 		}
 		else

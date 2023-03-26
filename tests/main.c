@@ -52,5 +52,15 @@ int main(void)
 	printf("%  d\n", -5);
 	_printf("%  d\n", -5);
 
+	/* write test cases for %s and %c only */
+	printf("%%\n");
+	_printf("%%\n");
+	printf("%%s\n", "hello");
+	_printf("%%s\n", "hello");
+	printf("%%c\n", 'a');
+	_printf("%%c\n", 'a');
+
+
+
 	return (0);
 }
