@@ -9,5 +9,6 @@ int printchar(char c);
 int evaluate_flag(char flag, va_list args);
 int printstr(char *s);
 int print_integer(int n);
+unsigned int decimal_to_binary(unsigned int k);
 
 #endif

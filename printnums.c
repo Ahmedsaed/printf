@@ -24,3 +24,18 @@ int print_integer(int n)
 
 	return (count);
 }
+
+/**
+ * decimal_to_binary - returns the binary representation of a number
+ *
+ * @k: number to convert
+ * Return: binary representation of k
+ */
+unsigned int decimal_to_binary(unsigned int k)
+{
+	if (k == 0)
+		return (0);
+	if (k == 1)
+		return (1);
+	return ((k % 2) + 10 * decimal_to_binary(k / 2));
+}

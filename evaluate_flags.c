@@ -11,7 +11,6 @@
 int evaluate_flag(char flag, va_list args)
 {
 	int counter = 0;
-	char *s;
 
 	switch (flag)
 	{
@@ -19,12 +18,7 @@ int evaluate_flag(char flag, va_list args)
 			counter += printchar(va_arg(args, int));
 			break;
 		case 's':
-			s = va_arg(args, char *);
-
-			if (s == NULL)
-				s = "(null)";
-
-			counter += printstr(s);
+			counter += printstr(va_arg(args, char *));
 			break;
 		case '%':
 			counter += printchar('%');
@@ -32,6 +26,9 @@ int evaluate_flag(char flag, va_list args)
 		case 'd':
 		case 'i':
 			counter += print_integer(va_arg(args, int));
+			break;
+		case 'b':
+			counter += print_integer(decimal_to_binary(va_arg(args, unsigned int)));
 			break;
 		default:
 			counter += printchar('%');

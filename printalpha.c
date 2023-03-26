@@ -11,6 +11,9 @@ int printstr(char *s)
 {
 	int count = 0;
 
+	if (s == NULL)
+		s = "(null)";
+
 	while (*s)
 	{
 		printchar(*s);

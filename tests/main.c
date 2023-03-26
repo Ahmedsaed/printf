@@ -3,12 +3,14 @@
 #include "../main.h"
 
 #define TEST_STRING 0
-#define TEST_INTEGER 1
+#define TEST_INTEGER 0
 #define TEST_OTHER 0
+#define TEST_Binary 1
 
 void test_print_string(void);
 void test_print_integer(void);
 void test_print_other(void);
+void test_print_binary(void);
 
 /**
  * main - Entry point
@@ -25,6 +27,9 @@ int main(void)
 #endif
 #if TEST_OTHER == 1
 	test_print_other();
+#endif
+#if TEST_Binary == 1
+	test_print_binary();
 #endif
 
 	return (0);
@@ -94,8 +99,8 @@ void test_print_integer(void)
 	len2 = printf("Positive:[%i]\n", 76);
 	printf("Len:[%d, %d]\n", len, len2);
 
-	len = _printf("Int:[%i], Decimal:[%d]\n", 033, 033);
-	len2 = printf("Int:[%i], Decimal:[%d]\n", 033, 033);
+	len = _printf("Int:[%i], Decimal:[%d]\n", 0x33, 033);
+	len2 = printf("Int:[%i], Decimal:[%d]\n", 0x33, 033);
 }
 
 /**
@@ -125,4 +130,19 @@ void test_print_other(void)
 
 	_printf("Address:[%p]\n", addr);
 	printf("Address:[%p]\n", addr);
+}
+
+
+/**
+ * test_print_binary - test print binary
+ *
+ * Return: void
+ */
+void test_print_binary(void)
+{
+	int len, len2;
+
+	len = _printf("Binary:[%b]\n", 98);
+	len2 = printf("Binary:[%b]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
 }
