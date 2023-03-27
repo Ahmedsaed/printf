@@ -1,37 +1,47 @@
 #include "main.h"
 
 /**
- * printstr - prints a string to stdio
+ * print_str - prints a string to stdio
  *
  * @s: pointer to a string of characters
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
  *
- * Return: int count
+ * Return: int - count
  */
-int printstr(char *s)
+int print_str(char *s, char *buffer, int *index)
 {
-	int count = 0;
+	int i, count = 0;
 
 	if (s == NULL)
 		s = "(null)";
 
-	while (*s)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		printchar(*s);
-		s++;
-		count++;
+		count += print_char(s[i], buffer, index);
 	}
 
 	return (count);
 }
 
 /**
- * printchar - writes the character c to stdout
- * @c: The character to print
+ * print_char - writes the character c to stdout
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * @c: The character to print
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
+ *
+ * Return: int - count
  */
-int printchar(char c)
+int print_char(char c, char *buffer, int *index)
 {
-	return (write(1, &c, 1));
+	int count = 0;
+
+	buffer[*index] = c;
+	*index += 1;
+
+	if (*index >= BUFFER_SIZE)
+		count += flush_buffer(buffer, index);
+
+	return (count);
 }

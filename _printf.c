@@ -10,8 +10,9 @@
  */
 int _printf(const char *format, ...)
 {
-	int counter = 0, i;
+	int counter = 0, i, buffer_index = 0;
 	va_list args;
+	char buffer[BUFFER_SIZE];
 
 	va_start(args, format);
 
@@ -23,15 +24,35 @@ int _printf(const char *format, ...)
 		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
-			counter += evaluate_flag(format[i], args);
+			counter += evaluate_flag(format[i], args, buffer, &buffer_index);
 		}
 		else
 		{
-			counter += printchar(format[i]);
+			counter += print_char(format[i], buffer, &buffer_index);
 		}
 	}
+
+	counter += flush_buffer(buffer, &buffer_index);
 
 	va_end(args);
 
 	return (counter);
+}
+
+/**
+ * flush_buffer - flushes the buffer
+ *
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
+ *
+ * Return: int - number of characters printed
+ */
+int flush_buffer(char buffer[], int *index)
+{
+	int count = *index;
+
+	write(1, buffer, *index);
+	(*index) = 0;
+
+	return (count);
 }

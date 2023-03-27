@@ -3,7 +3,7 @@
 #include "../main.h"
 
 #define TEST_ALL 0
-#define TEST_NUMERIC 1
+#define TEST_NUMERIC 0
 #define TEST_STRING 0
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
@@ -209,6 +209,10 @@ void test_print_hex(void)
 
 	len = _printf("hex:[%x]\n", 98);
 	len2 = printf("hex:[%x]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("hex:[%x]\n", 0xA);
+	len2 = printf("hex:[%x]\n", 0xA);
 	printf("Len:[%d, %d]\n", len, len2);
 
 	len = _printf("hex:[%x]\n", 1024);
