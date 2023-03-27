@@ -38,10 +38,44 @@ int print_char(char c, char *buffer, int *index)
 	int count = 0;
 
 	buffer[*index] = c;
-	*index += 1;
+	(*index)++;
 
-	if (*index >= BUFFER_SIZE)
+	if (*index == BUFFER_SIZE)
+	{
 		count += flush_buffer(buffer, index);
+	}
+
+	return (count);
+}
+
+/**
+ * print_non_printable - prints non printable characters
+ *
+ * @str: string to print
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
+ *
+ * Return: int - count
+ */
+int print_non_printable(char *str, char *buffer, int *index)
+{
+	int i, count = 0;
+	char *hex = "0123456789ABCDEF";
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] < 32 || str[i] >= 127)
+		{
+			count += print_char('\\', buffer, index);
+			count += print_char('x', buffer, index);
+			count += print_char(hex[str[i] / 16], buffer, index);
+			count += print_char(hex[str[i] % 16], buffer, index);
+		}
+		else
+		{
+			count += print_char(str[i], buffer, index);
+		}
+	}
 
 	return (count);
 }

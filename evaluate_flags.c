@@ -14,41 +14,32 @@ int evaluate_flag(char flag, va_list args, char *buffer, int *index)
 {
 	int counter = 0;
 
-	switch (flag)
+	if (flag == 'c')
+		counter += print_char(va_arg(args, int), buffer, index);
+	else if (flag == 's')
+		counter += print_str(va_arg(args, char *), buffer, index);
+	else if (flag == 'S')
+		counter += print_non_printable(va_arg(args, char *), buffer, index);
+	else if (flag == '%')
+		counter += print_char('%', buffer, index);
+	else if (flag == 'd' || flag == 'i')
+		counter += print_integer(va_arg(args, int), buffer, index);
+	else if (flag == 'u')
+		counter += print_integer(va_arg(args, unsigned int), buffer, index);
+	else if (flag == 'b')
+		counter += print_binary(va_arg(args, unsigned int), buffer, index);
+	else if (flag == 'o')
+		counter += print_octal(va_arg(args, unsigned int), buffer, index);
+	else if (flag == 'x')
+		counter += print_hex(va_arg(args, unsigned int), 0, buffer, index);
+	else if (flag == 'X')
+		counter += print_hex(va_arg(args, unsigned int), 1, buffer, index);
+	else
 	{
-		case 'c':
-			counter += print_char(va_arg(args, int), buffer, index);
-			break;
-		case 's':
-			counter += print_str(va_arg(args, char *), buffer, index);
-			break;
-		case '%':
-			counter += print_char('%', buffer, index);
-			break;
-		case 'd':
-		case 'i':
-			counter += print_integer(va_arg(args, int), buffer, index);
-			break;
-		case 'u':
-			counter += print_integer(va_arg(args, unsigned int), buffer, index);
-			break;
-		case 'b':
-			counter += print_binary(va_arg(args, unsigned int), buffer, index);
-			break;
-		case 'o':
-			counter += print_octal(va_arg(args, unsigned int), buffer, index);
-			break;
-		case 'x':
-			counter += print_hex(va_arg(args, unsigned int), 0, buffer, index);
-			break;
-		case 'X':
-			counter += print_hex(va_arg(args, unsigned int), 1, buffer, index);
-			break;
-		default:
-			counter += print_char('%', buffer, index);
-			counter += print_char(flag, buffer, index);
-			break;
+		counter += print_char('%', buffer, index);
+		counter += print_char(flag, buffer, index);
 	}
+
 
 	return (counter);
 }

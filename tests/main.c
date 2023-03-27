@@ -4,13 +4,13 @@
 
 #define TEST_ALL 0
 #define TEST_NUMERIC 0
-#define TEST_STRING 0
+#define TEST_STRING 1
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
 #define TEST_BINARY 0
 #define TEST_OCTAL 0
 #define TEST_HEX 0
-#define TEST_UNSIGNED 1
+#define TEST_UNSIGNED 0
 
 /* Function Prototypes */
 void test_print_string(void);
@@ -82,16 +82,18 @@ void test_print_string(void)
 	len2 = printf("Percent:[%%]\n");
 	printf("Length:[%d, %d]\n", len, len2);
 
-	_printf("String:[%s]\n", "I am a string !");
-	printf("String:[%s]\n", "I am a string !");
+	len = _printf("String:[%s]\n", "I am a string !");
+	len2 = printf("String:[%s]\n", "I am a string !");
+	printf("Length:[%d, %d]\n", len, len2);
 
-	_printf("Character:[%c]\n", 'H');
-	printf("Character:[%c]\n", 'H');
+	len = _printf("Character:[%c]\n", 'H');
+	len2 = printf("Character:[%c]\n", 'H');
+	printf("Length:[%d, %d]\n", len, len2);
 
 	printf("%%\n");
 	_printf("%%\n");
-	printf("%%s\n", "hello");
-	_printf("%%s\n", "hello");
+	printf("%%%s\n", "hello");
+	_printf("%%%s\n", "hello");
 
 	printf("%%c\n", 'a');
 	_printf("%%c\n", 'a');
@@ -101,6 +103,14 @@ void test_print_string(void)
 
 	_printf("String:[%s]\n", NULL);
 	printf("String:[%s]\n", NULL);
+
+	len = _printf("String:[%s]\n", "hallo\nWorld");
+	len2 = printf("String:[%s]\n", "hallo\nWorld");
+	printf("Length:[%d, %d]\n", len, len2);
+
+	len = _printf("String:[%S]\n", "hallo\nWorld");
+	len2 = printf("String:[hallo\\x0AWorld]\n");
+	printf("Length:[%d, %d]\n", len, len2);
 }
 
 /**
