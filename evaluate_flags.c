@@ -32,6 +32,8 @@ int evaluate_flag(char flag, va_list args, char *buffer, int *index)
 		counter += print_octal(va_arg(args, unsigned int), buffer, index);
 	else if (flag == 'x')
 		counter += print_hex(va_arg(args, unsigned int), 0, buffer, index);
+	else if (flag == 'p')
+		counter += print_address(va_arg(args, void *), buffer, index);
 	else if (flag == 'X')
 		counter += print_hex(va_arg(args, unsigned int), 1, buffer, index);
 	else
