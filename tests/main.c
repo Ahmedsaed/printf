@@ -3,10 +3,10 @@
 #include "../main.h"
 
 #define TEST_ALL 0
-#define TEST_NUMERIC 0
+#define TEST_NUMERIC 1
 #define TEST_STRING 0
 #define TEST_INTEGER 0
-#define TEST_OTHER 1
+#define TEST_OTHER 0
 #define TEST_BINARY 0
 #define TEST_OCTAL 0
 #define TEST_HEX 0

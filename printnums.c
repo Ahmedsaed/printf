@@ -13,6 +13,7 @@ int print_integer(long int n, char *buffer, int *index)
 {
 	int count = 0;
 	unsigned int n1;
+	char *str;
 
 	if (n < 0)
 	{
@@ -22,10 +23,9 @@ int print_integer(long int n, char *buffer, int *index)
 	else
 		n1 = n;
 
-	if (n1 / 10)
-		print_integer(n1 / 10, buffer, index);
+	str = convert(n1, 10, 0);
 
-	count += print_char((n1 % 10) + '0', buffer, index);
+	count += print_str(str, buffer, index);
 
 	return (count);
 }
@@ -42,11 +42,11 @@ int print_integer(long int n, char *buffer, int *index)
 unsigned int print_binary(unsigned int k, char *buffer, int *index)
 {
 	unsigned int count = 0;
+	char *str;
 
-	if (k > 1)
-		count += print_binary(k / 2, buffer, index);
+	str = convert(k, 2, 0);
 
-	count += print_char((k % 2) + '0', buffer, index);
+	count += print_str(str, buffer, index);
 
 	return (count);
 }
@@ -64,11 +64,11 @@ unsigned int print_binary(unsigned int k, char *buffer, int *index)
 unsigned int print_octal(unsigned int k, char *buffer, int *index)
 {
 	unsigned int count = 0;
+	char *str;
 
-	if (k > 7)
-		count += print_octal(k / 8, buffer, index);
+	str = convert(k, 8, 0);
 
-	count += print_char((k % 8) + '0', buffer, index);
+	count += print_str(str, buffer, index);
 
 	return (count);
 }
@@ -86,16 +86,11 @@ unsigned int print_octal(unsigned int k, char *buffer, int *index)
 unsigned int print_hex(unsigned int k, int char_case, char *buffer, int *index)
 {
 	unsigned int count = 0;
+	char *str;
 
-	if (k > 15)
-		count += print_hex(k / 16, char_case, buffer, index);
+	str = convert(k, 16, char_case);
 
-	if (k % 16 < 10)
-		count += print_char((k % 16) + '0', buffer, index);
-	else if (char_case == 0)
-		count += print_char((k % 16) + 'a' - 10, buffer, index);
-	else
-		count += print_char((k % 16) + 'A' - 10, buffer, index);
+	count += print_str(str, buffer, index);
 
 	return (count);
 }
