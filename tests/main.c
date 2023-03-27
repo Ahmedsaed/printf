@@ -165,6 +165,9 @@ void test_print_other(void)
 
 	_printf("Address:[%p]\n", addr);
 	printf("Address:[%p]\n", addr);
+
+	_printf("Address:[%p]\n", NULL);
+	printf("Address:[%p]\n", NULL);
 }
 
 

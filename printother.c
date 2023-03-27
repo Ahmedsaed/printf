@@ -15,6 +15,9 @@ int print_address(void *p, char *buffer, int *index)
 	unsigned long int address = (unsigned long int)p;
 	char *hex;
 
+	if (p == NULL)
+		return (print_str("(nil)", buffer, index));
+
 	hex = convert(address, 16, 0);
 
 	count += print_char('0', buffer, index);
