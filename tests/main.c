@@ -321,4 +321,20 @@ void test_print_flags(void)
 	len = _printf("Flag:[%#o]\n", 0);
 	len2 = printf("Flag:[%#o]\n", 0);
 	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[% x]\n", 98);
+	len2 = printf("Flag:[% x]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%+x]\n", 98);
+	len2 = printf("Flag:[%+x]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[% o]\n", 98);
+	len2 = printf("Flag:[% o]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%+o]\n", 98);
+	len2 = printf("Flag:[%+o]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
 }

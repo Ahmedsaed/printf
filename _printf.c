@@ -98,6 +98,7 @@ flags_t get_flags(const char *format, int *f_i)
 	flags_t flags;
 
 	flags.show_sign = 0;
+	flags.show_base = 0;
 	flags.space = 0;
 	flags.left_align = 0;
 	flags.zero_pad = 0;
