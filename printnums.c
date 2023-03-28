@@ -3,18 +3,29 @@
 /**
  * print_integer - prints an integer
  *
- * @n: integer to print
+ * @args: arguments list
  * @buffer: char array - buffer to print
  * @index: current index of buffer
  * @flags: struct containing flags data
  *
  * Return: int - count
  */
-int print_integer(long int n, char *buffer, int *index, flags_t *flags)
+int print_integer(va_list args, char *buffer, int *index, flags_t *flags)
 {
-	int count = 0;
+	long int count = 0, n;
 	unsigned int n1;
 	char *str;
+
+	if (flags->length_modifier == 1 && flags->is_uint == 1)
+		n = va_arg(args, unsigned long int);
+	else if (flags->length_modifier == 1 && flags->is_uint == 0)
+		n = va_arg(args, long int);
+	else if (flags->length_modifier == 0 && flags->is_uint == 1)
+		n = va_arg(args, unsigned int);
+	else if (flags->length_modifier == 0 && flags->is_uint == 0)
+		n = va_arg(args, int);
+	else
+		n = va_arg(args, int);
 
 	if (n < 0)
 	{
@@ -71,7 +82,7 @@ unsigned int print_binary(unsigned int k, char *buffer,
  *
  * Return: count - unsigned int
  */
-unsigned int print_octal(unsigned int k, char *buffer,
+unsigned int print_octal(unsigned long int k, char *buffer,
 						int *index, flags_t *flags)
 {
 	unsigned int count = 0;
@@ -98,7 +109,7 @@ unsigned int print_octal(unsigned int k, char *buffer,
  *
  * Return: count - unsigned int
  */
-unsigned int print_hex(unsigned int k, int char_case, char *buffer,
+unsigned int print_hex(unsigned long int k, int char_case, char *buffer,
 					int *index, flags_t *flags)
 {
 	unsigned int count = 0;

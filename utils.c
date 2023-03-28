@@ -12,10 +12,10 @@
 char *convert(unsigned long int num, int base, int char_case)
 {
 	static char *rep;
-	static char buffer[50];
+	static char buf[50];
 	char *ptr;
 
-	ptr = &buffer[49];
+	ptr = &buf[49];
 	*ptr = '\0';
 
 	if (char_case == 0)

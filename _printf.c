@@ -62,10 +62,8 @@ int handle_flags(const char *format, int *f_i,
 		counter += print_non_printable(va_arg(args, char *), buffer, b_i, &flags);
 	else if (specifier == '%')
 		counter += print_char('%', buffer, b_i, &flags);
-	else if (specifier == 'd' || specifier == 'i')
-		counter += print_integer(va_arg(args, int), buffer, b_i, &flags);
-	else if (specifier == 'u')
-		counter += print_integer(va_arg(args, unsigned int), buffer, b_i, &flags);
+	else if (specifier == 'd' || specifier == 'i' || specifier == 'u')
+		counter += print_integer(args, buffer, b_i, &flags);
 	else if (specifier == 'b')
 		counter += print_binary(va_arg(args, unsigned int), buffer, b_i, &flags);
 	else if (specifier == 'o')
@@ -101,14 +99,18 @@ flags_t get_flags(const char *format, int *f_i)
 	flags.show_base = 0;
 	flags.space = 0;
 	flags.left_align = 0;
+	flags.length_modifier = 0;
 	flags.zero_pad = 0;
 	flags.width = 0;
+	flags.is_uint = 0;
 	flags.precision = 0;
 
 	while (
 		format[*f_i] == '+' ||
 		format[*f_i] == ' ' ||
-		format[*f_i] == '#'
+		format[*f_i] == '#' ||
+		format[*f_i] == 'l' ||
+		format[*f_i] == 'h'
 	)
 	{
 		if (format[*f_i] == '+')
@@ -117,9 +119,16 @@ flags_t get_flags(const char *format, int *f_i)
 			flags.space = 1;
 		else if (format[*f_i] == '#')
 			flags.show_base = 1;
+		else if (format[*f_i] == 'l')
+			flags.length_modifier = 1;
+		else if (format[*f_i] == 'h')
+			flags.length_modifier = -1;
 
 		(*f_i)++;
 	}
+
+	if (format[*f_i] == 'u')
+		flags.is_uint = 1;
 
 	return (flags);
 }
