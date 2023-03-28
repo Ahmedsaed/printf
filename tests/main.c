@@ -3,7 +3,7 @@
 #include "../main.h"
 
 #define TEST_ALL 0
-#define TEST_NUMERIC 1
+#define TEST_NUMERIC 0
 #define TEST_STRING 0
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
@@ -11,7 +11,8 @@
 #define TEST_OCTAL 0
 #define TEST_HEX 0
 #define TEST_UNSIGNED 0
-#define TEST_FLAGS 1
+#define TEST_FLAGS 0
+#define TEST_REVERSE 1
 
 /* Function Prototypes */
 void test_print_string(void);
@@ -22,6 +23,7 @@ void test_print_octal(void);
 void test_print_hex(void);
 void test_print_uint(void);
 void test_print_flags(void);
+void test_print_reverse(void);
 
 /**
  * main - Entry point
@@ -61,6 +63,10 @@ int main(void)
 #if TEST_ALL || TEST_FLAGS
 	printf("\n\nTesting flags: \n");
 	test_print_flags();
+#endif
+#if TEST_ALL || TEST_REVERSE
+	printf("\n\nTesting reverse: \n");
+	test_print_reverse();
 #endif
 
 	return (0);
@@ -337,4 +343,19 @@ void test_print_flags(void)
 	len = _printf("Flag:[%+o]\n", 98);
 	len2 = printf("Flag:[%+o]\n", 98);
 	printf("Len:[%d, %d]\n", len, len2);
+}
+
+
+/**
+ * test_print_reverse - test print reverse
+ *
+ * Return: void
+ */
+void test_print_reverse(void)
+{
+	int len, len2;
+
+	len = _printf("Reverse:[%r]\n", "Holberton");
+	len = _printf("Reverse:[%r]\n", "School");
+	len = _printf("Reverse:[%r]\n", "Holberton School");
 }

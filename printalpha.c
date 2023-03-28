@@ -86,3 +86,31 @@ int print_non_printable(char *str, char *buffer, int *index, flags_t *flags)
 
 	return (count);
 }
+
+/**
+ * print_str_reverse - prints a string in reverse
+ *
+ * @s: pointer to a string of characters
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
+ * @flags: struct containint flags data
+ *
+ * Return: int - count
+ */
+int print_str_reverse(char *s, char *buffer, int *index, flags_t *flags)
+{
+	int i, count = 0;
+
+	if (s == NULL)
+		s = "(null)";
+
+	for (i = 0; s[i] != '\0'; i++)
+		;
+
+	for (i -= 1; i >= 0; i--)
+	{
+		count += print_char(s[i], buffer, index, flags);
+	}
+
+	return (count);
+}

@@ -54,31 +54,7 @@ int handle_flags(const char *format, int *f_i,
 
 	specifier = format[(*f_i)];
 
-	if (specifier == 'c')
-		counter += print_char(va_arg(args, int), buffer, b_i, &flags);
-	else if (specifier == 's')
-		counter += print_str(va_arg(args, char *), buffer, b_i, &flags);
-	else if (specifier == 'S')
-		counter += print_non_printable(va_arg(args, char *), buffer, b_i, &flags);
-	else if (specifier == '%')
-		counter += print_char('%', buffer, b_i, &flags);
-	else if (specifier == 'd' || specifier == 'i' || specifier == 'u')
-		counter += print_integer(args, buffer, b_i, &flags);
-	else if (specifier == 'b')
-		counter += print_binary(va_arg(args, unsigned int), buffer, b_i, &flags);
-	else if (specifier == 'o')
-		counter += print_octal(va_arg(args, unsigned int), buffer, b_i, &flags);
-	else if (specifier == 'x')
-		counter += print_hex(va_arg(args, unsigned int), 0, buffer, b_i, &flags);
-	else if (specifier == 'p')
-		counter += print_address(va_arg(args, void *), buffer, b_i, &flags);
-	else if (specifier == 'X')
-		counter += print_hex(va_arg(args, unsigned int), 1, buffer, b_i, &flags);
-	else
-	{
-		counter += print_char('%', buffer, b_i, &flags);
-		counter += print_char(specifier, buffer, b_i, &flags);
-	}
+	counter += handle_print(specifier, args, buffer, b_i, flags);
 
 	return (counter);
 }
@@ -95,15 +71,7 @@ flags_t get_flags(const char *format, int *f_i)
 {
 	flags_t flags;
 
-	flags.show_sign = 0;
-	flags.show_base = 0;
-	flags.space = 0;
-	flags.left_align = 0;
-	flags.length_modifier = 0;
-	flags.zero_pad = 0;
-	flags.width = 0;
-	flags.is_uint = 0;
-	flags.precision = 0;
+	init_flags(&flags);
 
 	while (
 		format[*f_i] == '+' ||
@@ -130,5 +98,59 @@ flags_t get_flags(const char *format, int *f_i)
 	if (format[*f_i] == 'u')
 		flags.is_uint = 1;
 
+	if (format[*f_i] >= '0' && format[*f_i] <= '9')
+	{
+		flags.width = format[*f_i] - '0';
+		(*f_i)++;
+	}
+
 	return (flags);
 }
+
+/**
+ * handle_print - handles printing
+ *
+ * @specifier: specifier
+ * @args: arguments list
+ * @buffer: char array - buffer to print
+ * @b_i: current index of buffer
+ * @flags: struct containint flags data
+ *
+ * Return: int
+ */
+int handle_print(char specifier, va_list args,
+				char *buffer, int *b_i, flags_t flags)
+{
+	int counter = 0;
+
+	if (specifier == 'c')
+		counter += print_char(va_arg(args, int), buffer, b_i, &flags);
+	else if (specifier == 's')
+		counter += print_str(va_arg(args, char *), buffer, b_i, &flags);
+	else if (specifier == 'r')
+		counter += print_str_reverse(va_arg(args, char *), buffer, b_i, &flags);
+	else if (specifier == 'S')
+		counter += print_non_printable(va_arg(args, char *), buffer, b_i, &flags);
+	else if (specifier == '%')
+		counter += print_char('%', buffer, b_i, &flags);
+	else if (specifier == 'd' || specifier == 'i' || specifier == 'u')
+		counter += print_integer(args, buffer, b_i, &flags);
+	else if (specifier == 'b')
+		counter += print_binary(va_arg(args, unsigned int), buffer, b_i, &flags);
+	else if (specifier == 'o')
+		counter += print_octal(va_arg(args, unsigned int), buffer, b_i, &flags);
+	else if (specifier == 'x')
+		counter += print_hex(va_arg(args, unsigned int), 0, buffer, b_i, &flags);
+	else if (specifier == 'p')
+		counter += print_address(va_arg(args, void *), buffer, b_i, &flags);
+	else if (specifier == 'X')
+		counter += print_hex(va_arg(args, unsigned int), 1, buffer, b_i, &flags);
+	else
+	{
+		counter += print_char('%', buffer, b_i, &flags);
+		counter += print_char(specifier, buffer, b_i, &flags);
+	}
+
+	return (counter);
+}
+

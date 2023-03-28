@@ -38,12 +38,14 @@ typedef struct flags
 int _printf(const char *format, ...);
 int handle_flags(const char *format, int *f_i,
 				va_list args, char *buffer, int *b_i);
-int handle_print(char specifier, va_list args,
-				char *buffer, int *b_i, flags_t flags);
+int handle_print(char specifier, va_list args, char *buffer,
+				int *b_i, flags_t flags);
 int print_char(char c, char *buffer,
 			int *index, flags_t *flags);
 int print_str(char *s, char *buffer,
 			int *index, flags_t *flags);
+int print_str_reverse(char *s, char *buffer,
+					int *index, flags_t *flags);
 int print_integer(va_list args, char *buffer,
 					int *index, flags_t *flags);
 unsigned int print_binary(unsigned int k, char *buffer,
@@ -59,5 +61,6 @@ int print_non_printable(char *str, char *buffer,
 flags_t get_flags(const char *format, int *f_i);
 int flush_buffer(char buffer[], int *index);
 char *convert(unsigned long int num, int base, int char_case);
+void init_flags(flags_t *flags);
 
 #endif

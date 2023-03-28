@@ -48,3 +48,23 @@ int flush_buffer(char buffer[], int *index)
 
 	return (count);
 }
+
+/**
+ * init_flags - initializes flags struct
+ *
+ * @flags: struct containing flags data
+ *
+ * Return: void
+ */
+void init_flags(flags_t *flags)
+{
+	flags->show_sign = 0;
+	flags->show_base = 0;
+	flags->space = 0;
+	flags->left_align = 0;
+	flags->length_modifier = 0;
+	flags->zero_pad = 0;
+	flags->width = 0;
+	flags->is_uint = 0;
+	flags->precision = 0;
+}
