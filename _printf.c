@@ -145,6 +145,8 @@ int handle_print(char specifier, va_list args,
 		counter += print_address(va_arg(args, void *), buffer, b_i, &flags);
 	else if (specifier == 'X')
 		counter += print_hex(va_arg(args, unsigned int), 1, buffer, b_i, &flags);
+	else if (specifier == 'R')
+		counter += print_ROT13(va_arg(args, char *), buffer, b_i, &flags);
 	else
 	{
 		counter += print_char('%', buffer, b_i, &flags);

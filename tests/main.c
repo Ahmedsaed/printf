@@ -359,11 +359,9 @@ void test_print_flags(void)
  */
 void test_print_reverse(void)
 {
-	int len, len2;
-
-	len = _printf("Reverse:[%r]\n", "Holberton");
-	len = _printf("Reverse:[%r]\n", "School");
-	len = _printf("Reverse:[%r]\n", "Holberton School");
+	_printf("Reverse:[%r]\n", "Holberton");
+	_printf("Reverse:[%r]\n", "School");
+	_printf("Reverse:[%r]\n", "Holberton School");
 }
 
 /**
@@ -377,8 +375,11 @@ void test_print_rotation(void)
 
 	len = _printf("Reverse:[%R]\n", "Holberton Holberton Holberton Holberton Holberton");
 	len2 = printf("Reverse:[Ubyoregba Ubyoregba Ubyoregba Ubyoregba Ubyoregba]\n");
+	printf("Len:[%d, %d]\n", len, len2);
 	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum Holberton School lorem ipsum");
 	len2 = printf("Reverse:[Ubyoregba Fpubby yberz vcfhz Ubyoregba Fpubby yberz vcfhz]\n");
+	printf("Len:[%d, %d]\n", len, len2);
 	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum");
-	len = _printf("Reverse:[Ubyoregba Fpubby yberz vcfhz]\n");
+	len2 = printf("Reverse:[Ubyoregba Fpubby yberz vcfhz]\n");
+	printf("Len:[%d, %d]\n", len, len2);
 }

@@ -46,6 +46,8 @@ int print_str(char *s, char *buffer,
 			int *index, flags_t *flags);
 int print_str_reverse(char *s, char *buffer,
 					int *index, flags_t *flags);
+int print_ROT13(char *s, char *buffer,
+					int *index, flags_t *flags);
 int print_integer(va_list args, char *buffer,
 					int *index, flags_t *flags);
 unsigned int print_binary(unsigned int k, char *buffer,
