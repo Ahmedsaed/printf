@@ -376,6 +376,9 @@ void test_print_rotation(void)
 	int len, len2;
 
 	len = _printf("Reverse:[%R]\n", "Holberton Holberton Holberton Holberton Holberton");
+	len2 = printf("Reverse:[Ubyoregba Ubyoregba Ubyoregba Ubyoregba Ubyoregba]\n");
 	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum Holberton School lorem ipsum");
+	len2 = printf("Reverse:[Ubyoregba Fpubby yberz vcfhz Ubyoregba Fpubby yberz vcfhz]\n");
 	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum");
+	len = _printf("Reverse:[Ubyoregba Fpubby yberz vcfhz]\n");
 }
