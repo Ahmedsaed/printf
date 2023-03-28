@@ -30,3 +30,21 @@ char *convert(unsigned long int num, int base, int char_case)
 
 	return (ptr);
 }
+
+/**
+ * flush_buffer - flushes the buffer
+ *
+ * @buffer: char array - buffer to print
+ * @index: current index of buffer
+ *
+ * Return: int - number of characters printed
+ */
+int flush_buffer(char buffer[], int *index)
+{
+	int count = *index;
+
+	write(1, buffer, *index);
+	(*index) = 0;
+
+	return (count);
+}

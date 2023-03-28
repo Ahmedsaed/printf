@@ -6,10 +6,11 @@
  * @s: pointer to a string of characters
  * @buffer: char array - buffer to print
  * @index: current index of buffer
+ * @flags: struct containint flags data
  *
  * Return: int - count
  */
-int print_str(char *s, char *buffer, int *index)
+int print_str(char *s, char *buffer, int *index, flags_t *flags)
 {
 	int i, count = 0;
 
@@ -18,7 +19,7 @@ int print_str(char *s, char *buffer, int *index)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		count += print_char(s[i], buffer, index);
+		count += print_char(s[i], buffer, index, flags);
 	}
 
 	return (count);
@@ -30,12 +31,16 @@ int print_str(char *s, char *buffer, int *index)
  * @c: The character to print
  * @buffer: char array - buffer to print
  * @index: current index of buffer
+ * @flags: struct containint flags data
  *
  * Return: int - count
  */
-int print_char(char c, char *buffer, int *index)
+int print_char(char c, char *buffer, int *index, flags_t *flags)
 {
 	int count = 0;
+
+	/* check if flags is null */
+	(void)flags;
 
 	buffer[*index] = c;
 	(*index)++;
@@ -54,26 +59,28 @@ int print_char(char c, char *buffer, int *index)
  * @str: string to print
  * @buffer: char array - buffer to print
  * @index: current index of buffer
+ * @flags: struct containint flags data
  *
  * Return: int - count
  */
-int print_non_printable(char *str, char *buffer, int *index)
+int print_non_printable(char *str, char *buffer, int *index, flags_t *flags)
 {
 	int i, count = 0;
 	char *hex = "0123456789ABCDEF";
+	(void)flags;
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] < 32 || str[i] >= 127)
 		{
-			count += print_char('\\', buffer, index);
-			count += print_char('x', buffer, index);
-			count += print_char(hex[str[i] / 16], buffer, index);
-			count += print_char(hex[str[i] % 16], buffer, index);
+			count += print_char('\\', buffer, index, flags);
+			count += print_char('x', buffer, index, flags);
+			count += print_char(hex[str[i] / 16], buffer, index, flags);
+			count += print_char(hex[str[i] % 16], buffer, index, flags);
 		}
 		else
 		{
-			count += print_char(str[i], buffer, index);
+			count += print_char(str[i], buffer, index, flags);
 		}
 	}
 

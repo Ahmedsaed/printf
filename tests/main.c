@@ -4,13 +4,14 @@
 
 #define TEST_ALL 0
 #define TEST_NUMERIC 0
-#define TEST_STRING 1
+#define TEST_STRING 0
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
 #define TEST_BINARY 0
 #define TEST_OCTAL 0
 #define TEST_HEX 0
 #define TEST_UNSIGNED 0
+#define TEST_FLAGS 1
 
 /* Function Prototypes */
 void test_print_string(void);
@@ -20,6 +21,7 @@ void test_print_binary(void);
 void test_print_octal(void);
 void test_print_hex(void);
 void test_print_uint(void);
+void test_print_flags(void);
 
 /**
  * main - Entry point
@@ -55,6 +57,10 @@ int main(void)
 #if TEST_ALL || TEST_OTHER
 	printf("\n\nTesting other: \n");
 	test_print_other();
+#endif
+#if TEST_ALL || TEST_FLAGS
+	printf("\n\nTesting flags: \n");
+	test_print_flags();
 #endif
 
 	return (0);
@@ -93,7 +99,7 @@ void test_print_string(void)
 	len = _printf("");
 	len2 = printf("");
 	printf("Length:[%d, %d]\n", len, len2);
-	
+
 	len = _printf("%s", "");
 	len2 = printf("%s", "");
 	printf("Length:[%d, %d]\n", len, len2);
@@ -272,5 +278,47 @@ void test_print_uint(void)
 
 	len = _printf("Unsigned:[%u]\n", -1);
 	len2 = printf("Unsigned:[%u]\n", -1);
+	printf("Len:[%d, %d]\n", len, len2);
+}
+
+/**
+ * test_print_flags - test print flags
+ *
+ * Return: void
+ */
+void test_print_flags(void)
+{
+	int len, len2;
+
+	len = _printf("Flag:[%+d]\n", 98);
+	len2 = printf("Flag:[%+d]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%+d]\n", -98);
+	len2 = printf("Flag:[%+d]\n", -98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[% d]\n", 98);
+	len2 = printf("Flag:[% d]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[% d]\n", -98);
+	len2 = printf("Flag:[% d]\n", -98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%#x]\n", 98);
+	len2 = printf("Flag:[%#x]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%#x]\n", 0);
+	len2 = printf("Flag:[%#x]\n", 0);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%#o]\n", 98);
+	len2 = printf("Flag:[%#o]\n", 98);
+	printf("Len:[%d, %d]\n", len, len2);
+
+	len = _printf("Flag:[%#o]\n", 0);
+	len2 = printf("Flag:[%#o]\n", 0);
 	printf("Len:[%d, %d]\n", len, len2);
 }
