@@ -23,9 +23,9 @@ int print_integer(long int n, char *buffer, int *index, flags_t *flags)
 	}
 	else if (n >= 0)
 	{
-		if (flags->show_sign)
+		if (flags->show_sign && n >= 0)
 			count += print_char('+', buffer, index, flags);
-		else if (flags->space)
+		else if (flags->space && flags->show_sign == 0 && n >= 0)
 			count += print_char(' ', buffer, index, flags);
 		n1 = n;
 	}
