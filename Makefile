@@ -6,7 +6,7 @@ include_dir := include
 CC := gcc
 CFlags := -Wall -Werror -Wextra -Wno-format -pedantic -std=gnu89
 
-FILES = ./tests/main.c *.c
+FILES = ./tests/main.c *.c *.h
 SOURCES = $(FILES:%.cpp=$(src_dir)/%.cpp)
 
 all: clear_screen check_style build run
