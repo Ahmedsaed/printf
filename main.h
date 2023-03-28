@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 1024
-
 int _printf(const char *format, ...);
 int evaluate_flag(char flag, va_list args, char *buffer, int *index);
 int print_char(char c, char *buffer, int *index);

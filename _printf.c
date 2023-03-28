@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 {
 	int counter = 0, i, buffer_index = 0;
 	va_list args;
-	char buffer[BUFFER_SIZE];
+	char buffer[1024];
 
 	va_start(args, format);
 

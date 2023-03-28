@@ -40,7 +40,7 @@ int print_char(char c, char *buffer, int *index)
 	buffer[*index] = c;
 	(*index)++;
 
-	if (*index == BUFFER_SIZE)
+	if (*index == 1024)
 	{
 		count += flush_buffer(buffer, index);
 	}

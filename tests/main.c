@@ -3,8 +3,8 @@
 #include "../main.h"
 
 #define TEST_ALL 0
-#define TEST_NUMERIC 1
-#define TEST_STRING 0
+#define TEST_NUMERIC 0
+#define TEST_STRING 1
 #define TEST_INTEGER 0
 #define TEST_OTHER 0
 #define TEST_BINARY 0
@@ -88,6 +88,18 @@ void test_print_string(void)
 
 	len = _printf("Character:[%c]\n", 'H');
 	len2 = printf("Character:[%c]\n", 'H');
+	printf("Length:[%d, %d]\n", len, len2);
+
+	len = _printf("");
+	len2 = printf("");
+	printf("Length:[%d, %d]\n", len, len2);
+	
+	len = _printf("%s", "");
+	len2 = printf("%s", "");
+	printf("Length:[%d, %d]\n", len, len2);
+
+	len = _printf("%c", '\n');
+	len2 = printf("%c", '\n');
 	printf("Length:[%d, %d]\n", len, len2);
 
 	printf("%%\n");
