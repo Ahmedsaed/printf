@@ -21,7 +21,7 @@ int print_integer(long int n, char *buffer, int *index, flags_t *flags)
 		count += print_char('-', buffer, index, flags);
 		n1 = -n;
 	}
-	else
+	else if (n >= 0)
 	{
 		if (flags->show_sign)
 			count += print_char('+', buffer, index, flags);
@@ -79,6 +79,9 @@ unsigned int print_octal(unsigned int k, char *buffer,
 
 	str = convert(k, 8, 0);
 
+	if (flags->show_base && str[0] != '0')
+		count += print_char('0', buffer, index, flags);
+
 	count += print_str(str, buffer, index, flags);
 
 	return (count);
@@ -101,11 +104,11 @@ unsigned int print_hex(unsigned int k, int char_case, char *buffer,
 	unsigned int count = 0;
 	char *str;
 
-	if (flags->show_base)
+	str = convert(k, 16, char_case);
+
+	if (flags->show_base && str[0] != '0')
 		count += print_str((char_case) ? "0X" : "0x",
 							buffer, index, flags);
-
-	str = convert(k, 16, char_case);
 
 	count += print_str(str, buffer, index, flags);
 
