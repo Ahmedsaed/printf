@@ -12,7 +12,8 @@
 #define TEST_HEX 0
 #define TEST_UNSIGNED 0
 #define TEST_FLAGS 0
-#define TEST_REVERSE 1
+#define TEST_REVERSE 0
+#define TEST_ROTATION 1
 
 /* Function Prototypes */
 void test_print_string(void);
@@ -24,6 +25,7 @@ void test_print_hex(void);
 void test_print_uint(void);
 void test_print_flags(void);
 void test_print_reverse(void);
+void test_print_rotation(void);
 
 /**
  * main - Entry point
@@ -67,6 +69,10 @@ int main(void)
 #if TEST_ALL || TEST_REVERSE
 	printf("\n\nTesting reverse: \n");
 	test_print_reverse();
+#endif
+#if TEST_ALL || TEST_ROTATION
+	printf("\n\nTesting rotation: \n");
+	test_print_rotation();
 #endif
 
 	return (0);
@@ -358,4 +364,18 @@ void test_print_reverse(void)
 	len = _printf("Reverse:[%r]\n", "Holberton");
 	len = _printf("Reverse:[%r]\n", "School");
 	len = _printf("Reverse:[%r]\n", "Holberton School");
+}
+
+/**
+ * test_print_rotation - test print reverse
+ *
+ * Return: void
+ */
+void test_print_rotation(void)
+{
+	int len, len2;
+
+	len = _printf("Reverse:[%R]\n", "Holberton Holberton Holberton Holberton Holberton");
+	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum Holberton School lorem ipsum");
+	len = _printf("Reverse:[%R]\n", "Holberton School lorem ipsum");
 }
